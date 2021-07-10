@@ -1,11 +1,7 @@
+import eventListener from './eventListener';
 import dataFetcher from './dataFetcher';
 import dataProcessor from './dataProcessor';
 
-dataFetcher
-  .fetchWeatherData('Lisboa')
-  .then((data) =>
-    dataProcessor
-      .getDailyForecast(data)
-      .then((forecast) => console.log(forecast))
-  )
-  .catch((error) => console.log(error));
+eventListener.start();
+dataFetcher.start();
+dataProcessor.start();

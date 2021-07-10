@@ -1,15 +1,21 @@
+import pubSub from 'pubsub-js';
+
 const dataProcessor = (function dataProcessor() {
-  async function getCurrentWeather(data) {
-    return data.current;
+  function getCurrentWeather() {
+    const TOPIC = 'dataFetched';
+
+    pubSub.subscribe(TOPIC, (msg, args) => {
+      const currentWeather = args.data.current;
+      console.log(currentWeather);
+    });
   }
 
-  async function getDailyForecast(data) {
-    return data.daily;
+  function start() {
+    getCurrentWeather();
   }
 
   return {
-    getCurrentWeather,
-    getDailyForecast,
+    start,
   };
 })();
 

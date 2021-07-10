@@ -1,3 +1,5 @@
+import pubSub from 'pubsub-js';
+
 const dataFetcher = (function dataFetcher() {
   const API_KEY = '9611e63a364330a164a7c9a943fef32e';
 
@@ -8,19 +10,30 @@ const dataFetcher = (function dataFetcher() {
     return response.json();
   }
 
-  async function fetchWeatherData(city) {
-    const coordinates = await getCoordinates(city);
-    const { lat } = coordinates[0];
-    const { lon } = coordinates[0];
+  function fetchWeatherData() {
+    const TOPIC = 'fetchData';
 
-    const response = await fetch(
-      `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${API_KEY}`
-    );
-    return response.json();
+    pubSub.subscribe(TOPIC, async (msg, event) => {
+      const city = event.target.querySelector('input').value;
+      const coordinates = await getCoordinates(city);
+      const { lat } = coordinates[0];
+      const { lon } = coordinates[0];
+
+      const data = await fetch(
+        `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${API_KEY}`
+      ).then((response) => response.json());
+
+      const NEW_TOPIC = 'dataFetched';
+      pubSub.publish(NEW_TOPIC, { event, data });
+    });
+  }
+
+  function start() {
+    fetchWeatherData();
   }
 
   return {
-    fetchWeatherData,
+    start,
   };
 })();
 
