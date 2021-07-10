@@ -20,13 +20,23 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 /***/ }),
 
+/***/ "./src/dataProcessor.js":
+/*!******************************!*\
+  !*** ./src/dataProcessor.js ***!
+  \******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nconst dataProcessor = (function dataProcessor() {\n  async function getCurrentWeather(data) {\n    return data.current;\n  }\n\n  async function getDailyForecast(data) {\n    return data.daily;\n  }\n\n  return {\n    getCurrentWeather,\n    getDailyForecast,\n  };\n})();\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (dataProcessor);\n\n\n//# sourceURL=webpack://weather-app/./src/dataProcessor.js?");
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dataFetcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataFetcher */ \"./src/dataFetcher.js\");\n\n\n_dataFetcher__WEBPACK_IMPORTED_MODULE_0__.default.fetchWeatherData('Lisboa').then((data) => console.log(data));\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _dataFetcher__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dataFetcher */ \"./src/dataFetcher.js\");\n/* harmony import */ var _dataProcessor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./dataProcessor */ \"./src/dataProcessor.js\");\n\n\n\n_dataFetcher__WEBPACK_IMPORTED_MODULE_0__.default.fetchWeatherData('Lisboa')\n  .then((data) =>\n    _dataProcessor__WEBPACK_IMPORTED_MODULE_1__.default.getDailyForecast(data)\n      .then((forecast) => console.log(forecast))\n  )\n  .catch((error) => console.log(error));\n\n\n//# sourceURL=webpack://weather-app/./src/index.js?");
 
 /***/ })
 
