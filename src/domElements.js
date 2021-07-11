@@ -1,5 +1,6 @@
 export const body = document.querySelector('body');
 export const form = document.getElementById('form');
+export const error = document.getElementById('error');
 export const description = document.getElementById('description');
 export const city = document.getElementById('city');
 export const temperature = document.getElementById('temperature');

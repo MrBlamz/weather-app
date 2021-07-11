@@ -9,6 +9,7 @@
 
 :root {
   --text-color: #fafafa;
+  --background-color: rgba(0, 0, 0, 0.3);
 }
 
 body {
@@ -63,9 +64,31 @@ form button i {
   font-size: 1rem;
 }
 
+form #error {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  width: 100%;
+  background-color: var(--background-color);
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: var(--text-color);
+  text-align: center;
+  opacity: 0;
+  transition: all 0.3s ease-in;
+  transform: translateY(0);
+}
+
+form #error.active {
+  opacity: 1;
+  transition: all 0.3s ease-in;
+  transform: translateY(20px);
+}
+
 .weather-card {
   text-transform: uppercase;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: var(--background-color);
   padding: 2rem;
   border-radius: 10px;
   color: var(--text-color);

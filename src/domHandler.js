@@ -1,5 +1,6 @@
 import pubSub from 'pubsub-js';
 import {
+  error,
   description,
   city,
   temperature,
@@ -22,8 +23,21 @@ const domHandler = (function domHandler() {
     });
   }
 
+  function triggerError() {
+    const TOPIC = 'fetchFailed';
+
+    pubSub.subscribe(TOPIC, () => {
+      error.classList.toggle('active');
+
+      setTimeout(() => {
+        error.classList.toggle('active');
+      }, 3000);
+    });
+  }
+
   function start() {
     changeWeatherCard();
+    triggerError();
   }
 
   return {
