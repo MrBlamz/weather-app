@@ -1,8 +1,7 @@
 import pubSub from 'pubsub-js';
+import { form } from './domElements';
 
 const eventListener = (function eventListener() {
-  const form = document.getElementById('form');
-
   function formSubmitted() {
     const TOPIC = 'fetchData';
 
