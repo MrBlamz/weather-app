@@ -18,7 +18,7 @@ const domHandler = (function domHandler() {
 
   function changeBackgroundBasedOnLocalTime() {
     const hour = new Date().getHours();
-    changeBackground(`/dist/images/background/${hour}.jpg`);
+    changeBackground(`./images/background/${hour}.jpg`);
   }
 
   function changeWeatherCard() {
