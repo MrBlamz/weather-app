@@ -17,9 +17,9 @@ const domHandler = (function domHandler() {
       description.textContent = data.description;
       city.textContent = `${data.city}, ${data.country}`;
       temperature.textContent = `${data.temperature}ºc`;
-      feeling.textContent = `Feels like: ${data.feeling}ºc`;
-      wind.textContent = `Wind: ${data.wind} Kph`;
-      humidity.textContent = `Humidity: ${data.humidity}%`;
+      feeling.textContent = `${data.feeling}ºc`;
+      wind.textContent = `${data.wind} Kph`;
+      humidity.textContent = `${data.humidity}%`;
     });
   }
 
