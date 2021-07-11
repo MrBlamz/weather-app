@@ -1,5 +1,6 @@
 import pubSub from 'pubsub-js';
 import {
+  form,
   error,
   description,
   city,
@@ -23,6 +24,14 @@ const domHandler = (function domHandler() {
     });
   }
 
+  function clearForm() {
+    const TOPIC = 'dataProcessed';
+
+    pubSub.subscribe(TOPIC, () => {
+      form.reset();
+    });
+  }
+
   function triggerError() {
     const TOPIC = 'fetchFailed';
 
@@ -37,6 +46,7 @@ const domHandler = (function domHandler() {
 
   function start() {
     changeWeatherCard();
+    clearForm();
     triggerError();
   }
 
