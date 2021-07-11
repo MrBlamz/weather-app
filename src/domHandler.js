@@ -1,5 +1,6 @@
 import pubSub from 'pubsub-js';
 import {
+  body,
   form,
   error,
   description,
@@ -11,6 +12,15 @@ import {
 } from './domElements';
 
 const domHandler = (function domHandler() {
+  function changeBackground(path) {
+    body.style.background = `url(${path})`;
+  }
+
+  function changeBackgroundBasedOnLocalTime() {
+    const hour = new Date().getHours();
+    changeBackground(`/dist/images/background/${hour}.jpg`);
+  }
+
   function changeWeatherCard() {
     const TOPIC = 'dataProcessed';
 
@@ -45,6 +55,7 @@ const domHandler = (function domHandler() {
   }
 
   function start() {
+    changeBackgroundBasedOnLocalTime();
     changeWeatherCard();
     clearForm();
     triggerError();
