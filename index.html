@@ -4,27 +4,39 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="style.css" />
     <title>Weather App</title>
   </head>
   <body>
     <form class="form" id="form">
       <button type="submit">
-        <svg
-          width="24"
-          height="24"
-          xmlns="http://www.w3.org/2000/svg"
-          fill-rule="evenodd"
-          clip-rule="evenodd"
-        >
-          <path
-            d="M15.853 16.56c-1.683 1.517-3.911 2.44-6.353 2.44-5.243 0-9.5-4.257-9.5-9.5s4.257-9.5 9.5-9.5 9.5 4.257 9.5 9.5c0 2.442-.923 4.67-2.44 6.353l7.44 7.44-.707.707-7.44-7.44zm-6.353-15.56c4.691 0 8.5 3.809 8.5 8.5s-3.809 8.5-8.5 8.5-8.5-3.809-8.5-8.5 3.809-8.5 8.5-8.5z"
-          />
-        </svg>
+        <i class="fas fa-search"></i>
       </button>
       <label for="location"></label>
       <input type="text" name="location" id="location" placeholder="City" />
     </form>
+    <div class="weather-card">
+      <div id="first-container">
+        <p id="description">Sunny</p>
+        <p id="city">Lisbon</p>
+      </div>
+      <div id="second-container">
+        <p id="temperature">37ºc</p>
+        <span id="separator"></span>
+        <div>
+          <p id="feeling">FEELS LIKE: 36ºc</p>
+          <p id="wind">WIND: 4 KPH</p>
+          <p id="humidity">HUMIDITY: 30%</p>
+        </div>
+      </div>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
