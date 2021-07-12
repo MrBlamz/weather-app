@@ -11,7 +11,27 @@ const dataFetcher = (function dataFetcher() {
     return response;
   }
 
-  function fetchWeatherData() {
+  function fetchWeatherDataByCoordinates() {
+    const TOPIC = 'locationAcquired';
+
+    pubSub.subscribe(TOPIC, async (msg, coordinates) => {
+      try {
+        const { latitude, longitude } = coordinates;
+        const data = await fetch(
+          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
+        )
+          .then(handleErrors)
+          .then((response) => response.json());
+
+        const NEW_TOPIC = 'dataFetched';
+        pubSub.publish(NEW_TOPIC, data);
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  }
+
+  function fetchWeatherDataByCity() {
     const TOPIC = 'fetchData';
 
     pubSub.subscribe(TOPIC, async (msg, event) => {
@@ -33,7 +53,8 @@ const dataFetcher = (function dataFetcher() {
   }
 
   function start() {
-    fetchWeatherData();
+    fetchWeatherDataByCoordinates();
+    fetchWeatherDataByCity();
   }
 
   return {

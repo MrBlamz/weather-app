@@ -2,6 +2,14 @@ import pubSub from 'pubsub-js';
 import { form } from './domElements';
 
 const eventListener = (function eventListener() {
+  function pageLoaded() {
+    const TOPIC = 'pageLoaded';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      pubSub.publish(TOPIC);
+    });
+  }
+
   function formSubmitted() {
     const TOPIC = 'fetchData';
 
@@ -12,6 +20,7 @@ const eventListener = (function eventListener() {
   }
 
   function start() {
+    pageLoaded();
     formSubmitted();
   }
 
