@@ -1,6 +1,7 @@
 export const body = document.querySelector('body');
 export const loaderBackground = document.getElementById('loader-background');
 export const form = document.getElementById('form');
+export const search = document.querySelector('.search');
 export const error = document.getElementById('error');
 export const weatherCard = document.querySelector('.weather-card');
 export const description = document.getElementById('description');

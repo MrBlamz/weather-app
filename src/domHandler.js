@@ -2,6 +2,7 @@ import pubSub from 'pubsub-js';
 import {
   body,
   form,
+  search,
   error,
   loaderBackground,
   weatherCard,
@@ -14,6 +15,68 @@ import {
 } from './domElements';
 
 const domHandler = (function domHandler() {
+  function changeCSSVariable(root, name, value) {
+    root.style.setProperty(name, value);
+  }
+
+  function getBackgroundColorBasedOnLocalTime(hour) {
+    let color;
+
+    switch (true) {
+      case hour === 1 || hour === 2:
+        color = '#0d1237';
+        break;
+      case hour === 3 || hour === 4:
+        color = '#1a1941';
+        break;
+      case hour === 5 || hour === 6:
+        color = '#33224f';
+        break;
+      case hour === 7:
+        color = '#6a3970';
+        break;
+      case hour === 8:
+        color = '#29799e';
+        break;
+      case hour === 9 || hour === 10:
+        color = '#2a6c9e';
+        break;
+      case hour === 11 || hour === 12:
+        color = '#2f6aa2';
+        break;
+      case hour >= 13 && hour <= 15:
+        color = '#4574a2';
+        break;
+      case hour === 16 || hour === 17:
+        color = '#456795';
+        break;
+      case hour === 18 || hour === 19:
+        color = '#33416d';
+        break;
+      case hour === 20 || hour === 21:
+        color = '#1f2444';
+        break;
+      case hour >= 22 || hour === 0:
+        color = '#0a1236';
+        break;
+      default:
+        break;
+    }
+
+    return color;
+  }
+
+  function changeSearchBackgroundColor() {
+    const TOPIC = 'pageLoaded';
+
+    pubSub.subscribe(TOPIC, () => {
+      const hour = new Date().getHours();
+      const color = getBackgroundColorBasedOnLocalTime(hour);
+      changeCSSVariable(search, '--primary-color', color);
+      changeCSSVariable(search, '--background', color);
+    });
+  }
+
   function makeElementVisible(element) {
     element.classList.add('active');
   }
@@ -94,6 +157,7 @@ const domHandler = (function domHandler() {
 
   function start() {
     changeBackgroundBasedOnLocalTime();
+    changeSearchBackgroundColor();
     triggerLoader();
     closeLoader();
     changeWeatherCard();
