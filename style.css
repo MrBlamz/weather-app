@@ -20,8 +20,8 @@ body {
   align-items: center;
   position: relative;
   background: url(images/background/12.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
 }
 
 form {
