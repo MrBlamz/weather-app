@@ -17,8 +17,12 @@ const geoLocation = (function geoLocation() {
         const NEW_TOPIC = 'locationAcquired';
         pubSub.publish(NEW_TOPIC, { latitude, longitude });
       } catch (error) {
-        const NEW_TOPIC = 'failedToGetLocation';
-        pubSub.publish(NEW_TOPIC);
+        const { latitude, longitude } = {
+          latitude: 51.509865,
+          longitude: -0.118092,
+        };
+        const NEW_TOPIC = 'locationAcquired';
+        pubSub.publish(NEW_TOPIC, { latitude, longitude });
       }
     });
   }
