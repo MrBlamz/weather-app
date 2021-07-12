@@ -23,13 +23,33 @@
       <input type="text" name="location" id="location" placeholder="City" />
       <small id="error">City not found!</small>
     </form>
+
+    <div class="active" id="loader-background">
+      <div id="loader">
+        <svg class="circle-outer" viewBox="0 0 86 86">
+          <circle class="back" cx="43" cy="43" r="40"></circle>
+          <circle class="front" cx="43" cy="43" r="40"></circle>
+          <circle class="new" cx="43" cy="43" r="40"></circle>
+        </svg>
+        <svg class="circle-middle" viewBox="0 0 60 60">
+          <circle class="back" cx="30" cy="30" r="27"></circle>
+          <circle class="front" cx="30" cy="30" r="27"></circle>
+        </svg>
+        <svg class="circle-inner" viewBox="0 0 34 34">
+          <circle class="back" cx="17" cy="17" r="14"></circle>
+          <circle class="front" cx="17" cy="17" r="14"></circle>
+        </svg>
+        <div class="text" data-text="Searching"></div>
+      </div>
+    </div>
+
     <div class="weather-card">
       <div id="first-container">
-        <p id="description">Sunny</p>
-        <p id="city">Lisbon</p>
+        <p id="description"></p>
+        <p id="city"></p>
       </div>
       <div id="second-container">
-        <p id="temperature">37ºc</p>
+        <p id="temperature"></p>
         <span id="separator"></span>
         <div>
           <p>FEELS LIKE: <span id="feeling"></span></p>
