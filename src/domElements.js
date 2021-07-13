@@ -4,6 +4,7 @@ export const form = document.getElementById('form');
 export const search = document.querySelector('.search');
 export const error = document.getElementById('error');
 export const weatherCard = document.querySelector('.weather-card');
+export const unitsSwitchToggleCheckbox = document.querySelector('.checkbox');
 export const description = document.getElementById('description');
 export const city = document.getElementById('city');
 export const temperature = document.getElementById('temperature');

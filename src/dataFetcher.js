@@ -22,6 +22,7 @@ const dataFetcher = (function dataFetcher() {
         )
           .then(handleErrors)
           .then((response) => response.json());
+        data.units = 'metric';
 
         const NEW_TOPIC = 'dataFetched';
         pubSub.publish(NEW_TOPIC, data);
@@ -34,14 +35,15 @@ const dataFetcher = (function dataFetcher() {
   function fetchWeatherDataByCity() {
     const TOPIC = 'fetchData';
 
-    pubSub.subscribe(TOPIC, async (msg, event) => {
+    pubSub.subscribe(TOPIC, async (msg, info) => {
       try {
-        const city = event.target.querySelector('input').value;
+        const { city, units } = info;
         const data = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${API_KEY}`
+          `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=${units}&appid=${API_KEY}`
         )
           .then(handleErrors)
           .then((response) => response.json());
+        data.units = units;
 
         const NEW_TOPIC = 'dataFetched';
         pubSub.publish(NEW_TOPIC, data);

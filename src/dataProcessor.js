@@ -17,6 +17,7 @@ const dataProcessor = (function dataProcessor() {
         feeling: roundNumber(data.main.feels_like),
         wind: data.wind.speed,
         humidity: data.main.humidity,
+        units: data.units,
       };
 
       const NEW_TOPIC = 'dataProcessed';

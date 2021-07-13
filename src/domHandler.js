@@ -119,11 +119,14 @@ const domHandler = (function domHandler() {
   }
 
   function updateCard(data) {
+    const temperatureUnits = data.units === 'metric' ? 'ºc' : 'ºF';
+    const speedUnits = data.units === 'metric' ? 'Km/h' : 'Mph';
+
     description.textContent = data.description;
     city.textContent = `${data.city}, ${data.country}`;
-    temperature.textContent = `${data.temperature}ºc`;
-    feeling.textContent = `${data.feeling}ºc`;
-    wind.textContent = `${data.wind} Kph`;
+    temperature.textContent = `${data.temperature}${temperatureUnits}`;
+    feeling.textContent = `${data.feeling}${temperatureUnits}`;
+    wind.textContent = `${data.wind} ${speedUnits}`;
     humidity.textContent = `${data.humidity}%`;
   }
 

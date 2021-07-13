@@ -1,5 +1,5 @@
 import pubSub from 'pubsub-js';
-import { form } from './domElements';
+import { form, unitsSwitchToggleCheckbox } from './domElements';
 
 const eventListener = (function eventListener() {
   function pageLoaded() {
@@ -11,7 +11,7 @@ const eventListener = (function eventListener() {
   }
 
   function formSubmitted() {
-    const TOPIC = 'fetchData';
+    const TOPIC = 'formSubmitted';
 
     form.addEventListener('submit', (event) => {
       event.preventDefault();
@@ -19,12 +19,23 @@ const eventListener = (function eventListener() {
     });
   }
 
+  function unitsSwitchToggleClicked() {
+    const TOPIC = 'unitsSwitchToggleClicked';
+
+    unitsSwitchToggleCheckbox.addEventListener('change', (event) => {
+      pubSub.publish(TOPIC, event);
+    });
+  }
+
   function start() {
     pageLoaded();
     formSubmitted();
+    unitsSwitchToggleClicked();
   }
 
-  return { start };
+  return {
+    start,
+  };
 })();
 
 export default eventListener;
