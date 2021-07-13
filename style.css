@@ -203,7 +203,7 @@ form #error.active {
 .weather-card #temperature {
   font-size: 7rem;
   font-weight: 600;
-  text-transform: lowercase;
+  text-transform: none;
 }
 
 .weather-card #separator {
@@ -223,7 +223,11 @@ form #error.active {
 }
 
 .weather-card #second-container span#feeling {
-  text-transform: lowercase;
+  text-transform: none;
+}
+
+.weather-card #second-container span#wind {
+  text-transform: none;
 }
 
 /* Loader styles */
